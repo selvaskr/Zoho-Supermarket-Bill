@@ -1,10 +1,56 @@
 # Zoho-Supermarket-Bill
 
- DataBase Design
+A Java-based terminal application utilizing JDBC MySQL for managing customer details, product listings, generating bills, and tracking product sales in a supermarket setting.
+
+
+ ## DataBase Design
+
+ ### Customer
+This table contains information about customers.
+
+| Column Name | Data Type | Description         |
+|-------------|------------|---------------------|
+| Cust_id     | INT        | Unique identifier for the customer |
+| Cust_name   | VARCHAR    | Name of the customer |
+| Cust_number | VARCHAR    | Contact number of the customer |
+
+### Product
+This table contains information about products.
+
+| Column Name | Data Type | Description         |
+|-------------|------------|---------------------|
+| Prod_id     | INT        | Unique identifier for the product |
+| Prod_Name   | VARCHAR    | Name of the product |
+| Prod_price  | DECIMAL    | Price of the product |
+
+### Billing
+This table contains information about bills.
+
+| Column Name | Data Type | Description         |
+|-------------|------------|---------------------|
+| bill_id     | INT        | Unique identifier for the bill |
+| cust_id     | INT        | Foreign key referencing `Customer(Cust_id)` |
+| Total_price | DECIMAL    | Total price of the bill |
+
+### Billing Items
+This table contains information about items in a bill.
+
+| Column Name | Data Type | Description         |
+|-------------|------------|---------------------|
+| item_id     | INT        | Unique identifier for the billing item |
+| bill_id     | INT        | Foreign key referencing `Billing(bill_id)` |
+| product_id  | INT        | Foreign key referencing `Product(Prod_id)` |
+| quantity    | INT        | Quantity of the product in the bill |
+
+<br>
+
+ ## Database Design Diagram
 
 ![image](https://github.com/user-attachments/assets/3eb10835-f187-4e23-a271-d45154c4cde5)
 
- 
+<br>
+
+ # Modules and Description
  
  ## 1. Billing Management
     
@@ -52,14 +98,4 @@
    
    * Product Management: Allows admin to add new products or update the availability of existing products.
  
- ## Folder Structure
-
-The workspace contains two folders by default, where:
-
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
