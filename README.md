@@ -97,5 +97,56 @@ This table contains information about items in a bill.
    * Admin Access Only: Restricts access to admin users for adding or updating products.
    
    * Product Management: Allows admin to add new products or update the availability of existing products.
+
+
+# Modules ScreenShots
+
+ ## 1. Billing Management
  
+ ![image](https://github.com/user-attachments/assets/ac6af11c-b105-4819-adb9-4d66e9a0aee6)
+
+![image](https://github.com/user-attachments/assets/550c087b-ab10-4c9e-bd40-e7b970950dfa)
+
+![image](https://github.com/user-attachments/assets/53826faf-ffb0-43da-aa2d-d99f1510e882)
+
+### 1.1 If Suppose a Custommer enters the Quantity more than the Available Stock
+
+![image](https://github.com/user-attachments/assets/8d056669-f7d3-465c-abc5-0cf0bfe90624)
+
+![image](https://github.com/user-attachments/assets/614e9bba-24e2-4fb5-a58c-2522ac499781)
+
+
+## 2. Customer Details Display
+
+![image](https://github.com/user-attachments/assets/6732816c-2179-45ad-8918-76996c3b5881)
+
+![image](https://github.com/user-attachments/assets/0002ca70-cbe8-4c4d-b416-72607597be23)
+
+## 3. Product Listing
+
+![image](https://github.com/user-attachments/assets/b09a4613-18af-450a-b56b-8a05a7127473)
+
+## 4. Sales Analytics
+
+![image](https://github.com/user-attachments/assets/6486df75-3927-4c28-a8df-e48efc0c10a6)
+
+## 5. Daily Sales Report
+
+![image](https://github.com/user-attachments/assets/0cb14846-b9bb-43cf-93f0-da024ca52e09)
+
+![image](https://github.com/user-attachments/assets/af5ff709-b1ad-4386-837c-47122042413b)
+
+## 6. Product Database Management
+
+### 6.1 Add Product
+
+![image](https://github.com/user-attachments/assets/c50898e8-2599-4d5f-ad6a-4407791a4562)
+
+### 6.2 Update Product Stock or Price
+
+![image](https://github.com/user-attachments/assets/59c6f1d7-ffb9-473e-a0e1-ebe644b4652b)
+
+
+
+
 
