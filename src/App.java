@@ -72,7 +72,7 @@ public class App {
                                     int price,Quantity;
                                     System.out.print("Product Price : ");
                                     price=sc.nextInt();
-                                    System.out.print("Product Qunatity : ");
+                                    System.out.print("Product Quantity : ");
                                     Quantity=sc.nextInt();
                                     p.addproduct(Name,price,Quantity);
                                     N--;

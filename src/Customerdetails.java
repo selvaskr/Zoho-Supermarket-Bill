@@ -8,12 +8,14 @@ public class Customerdetails {
     static String user = "root";
     static String pass = "";
 
+    // Reference Objects
     Connection conn;
     PreparedStatement st;
     ResultSet rs;
 
     Scanner sc=new Scanner(System.in);
 
+    // Function for authorization
     public boolean checkadmin(String admin, String password )
     {   
         String p="ght";
@@ -23,6 +25,7 @@ public class Customerdetails {
         return false;
     }
 
+    // Function for checking wheather the customer is already present in Data Base or New Customer
     public int newCustomerorAlready() throws SQLException {
 
         System.out.print("Enter Customer Mobile Number : ");
@@ -43,6 +46,8 @@ public class Customerdetails {
             }
         } 
         else {
+
+            // If New ,then add the details to the Data Base
             System.out.print("Enter Customer Name : ");
             String name = sc.next();
 

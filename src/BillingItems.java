@@ -7,10 +7,12 @@ public class BillingItems {
     static String user = "root";
     static String pass = "";
 
+    // Reference Object
     Connection conn;
     PreparedStatement st;
     ResultSet rs;
 
+    // Function for finding the Each day sales of that Product 
     public void Salesofproduct(int id){
         try {
             
@@ -24,6 +26,7 @@ public class BillingItems {
 
                 System.out.println("\nProduct Name : "+rs.getString("Prod_Name")+"\nProduct_Price : "+rs.getInt("Prod_Price"));
 
+                // Sql Query for Fetching the Product Quantity that are sold on each Date.
                 String sql1="SELECT B.date,B.Bill_id,BI.Quantity FROM Billing as B INNER JOIN BillingItems as BI ON B.Bill_id=BI.Bill_id WHERE BI.Prod_id=?";
 
                 PreparedStatement pst =conn.prepareStatement(sql1);
@@ -47,12 +50,20 @@ public class BillingItems {
             e.printStackTrace();
         }
     }
+
+    // Function for Display the total number of Products Sold on that Day
+    // And also for Display the Customer who bought products and items bought on that day
     public void SalesonParticularDate(String Date){
         try {
 
             conn = DriverManager.getConnection(url, user, pass);
             
-            String sql  = "SELECT BI.Prod_id,P.Prod_Name,SUM(BI.Quantity)AS Quant FROM billing AS B INNER JOIN billingitems AS BI ON B.bill_id=BI.Bill_id INNER JOIN products AS P on BI.Prod_id=P.Prod_id where B.date=? GROUP BY BI.Prod_id ORDER BY P.Prod_id";
+            // Sql Query for Fetching the product Details and Quantity Sold on that Particular Day
+            String sql  = "SELECT BI.Prod_id,P.Prod_Name,SUM(BI.Quantity)AS Quant FROM billing AS B INNER JOIN billingitems AS BI ON B.bill_id=BI.Bill_id "+
+                            "INNER JOIN products AS P on BI.Prod_id=P.Prod_id where B.date=? GROUP BY BI.Prod_id ORDER BY P.Prod_id";
+
+            // Ouery for fetching the customer who bought items in that particular Day
+            // it als0 checks  the Data of Same customer bought multiple Invoice in Particular Day 
             String sql1 = "SELECT B.Bill_id,B.Cust_id,C.Cust_Name,C.Mobile_No FROM BILLING AS B INNER JOIN customer AS C ON B.Cust_id=C.Cust_id WHERE date=? ORDER BY Cust_id";
 
             st = conn.prepareStatement(sql);
@@ -83,11 +94,14 @@ public class BillingItems {
                 bill_id=rs.getInt("bill_id");
                 customer_id=rs.getInt("Cust_id");
 
+                // If Same Customer have multiple Invoice on that day ,then his details should be printed once.
                 if(prev_id!=customer_id){
                     prev_id=customer_id;
                     System.out.println("\nCustomer Name : " + rs.getString("Cust_Name") + "\nMobile_No : " + rs.getInt("Mobile_No"));
                 }
                 Generatebill g=new Generatebill();
+                // Here function call is done to display the items that are bought in that day buy the customer.
+                // Data is displayed using bill_id of that customer
                 g.Billedproductsdisplay(bill_id);
             }
 

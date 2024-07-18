@@ -15,15 +15,21 @@ public class Generatebill {
     Productlisting p = new Productlisting();
     Scanner sc=new Scanner(System.in);
 
+    // Referenced Objects
+
     Connection conn;
     PreparedStatement ps;
     ResultSet  rs;
 
-    // Showcase the products to Customer 
+    // Showcase the products to Customer to Select .
 
     public void showcaseproducts() throws SQLException{
         p.productitems();
     }
+
+    // Function for getting the Current bill id of a Customer and Updating Cust_id and date in Billing Table.
+
+    // Because the Bill_id is need for Updation of items that the Customer bought in Billing Items (Bill_id is used as Foregin Key).
 
     public int getbillidfornewbill(int cust_id) throws SQLException {
 
@@ -47,6 +53,7 @@ public class Generatebill {
         return id;
     }
 
+    // Function for adding the product and Quantity that the customer bought to Billing Items Table
     public void addcustomerbuyeditems(int Bill_id, int Prod_id, int Quantity) throws SQLException {
 
 
@@ -59,6 +66,8 @@ public class Generatebill {
         ps.executeUpdate();
     }
 
+    // Function for asking the Customer Which Products He Wants to Buy and Quantity.
+
     public void buyingitems(int Cust_id) throws SQLException {
 
         boolean wanttobuy = true;
@@ -69,7 +78,7 @@ public class Generatebill {
 
             showcaseproducts();
 
-            System.out.print("Enter the id of the product you wanted to buy : ");
+            System.out.print("\nEnter the id of the product you wanted to buy : ");
             int productid = sc.nextInt();
             System.out.print("Enter Quantity of selected Product : ");
             int quantity = sc.nextInt();
@@ -92,20 +101,25 @@ public class Generatebill {
 
             addcustomerbuyeditems(Bill_id, productid, quantity);
             
-            System.out.print("Want to continue shopping [YES 1 /NO 0] : ");
+            System.out.print("\nWant to continue shopping [YES 1 /NO 0] : ");
             int input = sc.nextInt();
             if (input == 0) {
                 wanttobuy=false;
             }
         }
 
-        // updateamount(Bill_id, amount);
-        // billedCustomerdetails(Bill_id);
+        // After Buying the Products ,Total Price Needs to be Updated in Billing table
+        updateamount(Bill_id, amount);
+
+        // After Updating the Total Price ,Display the Bill.
+        billedCustomerdetails(Bill_id);
+
     }
 
+    // Function for Updating Total Price for Products the Customer bought.
     public void updateamount(int Bill_id, int amount) throws SQLException {
 
-        String sql = "UPDATE billing SET Total_price = ? WHERE bill_id = ?";
+        String sql = "UPDATE billing SET Totalprice = ? WHERE bill_id = ?";
         conn = DriverManager.getConnection(url, user, pass);
         ps = conn.prepareStatement(sql);
         ps.setInt(1, amount);
@@ -114,11 +128,11 @@ public class Generatebill {
     }
 
 
-    // To Display the Customer Details of Particular Bill ID.
+    // To Display the Customer Details of Current Bill ID for which the Customer bought Recently.
 
     public void billedCustomerdetails(int B_id) throws SQLException{
         
-
+        // SQL Query for Displaying the Customer details and Total Price that the Customer Bought on Particular Bill Id
         String sql = "SELECT B.Bill_id,B.Cust_id,B.TotalPrice,C.Cust_Name,C.Mobile_No,B.date FROM Billing AS B INNER JOIN customer AS C ON B.Cust_id=C.Cust_id where B.Bill_id = ?";
 
         conn = DriverManager.getConnection(url, user, pass);
@@ -141,12 +155,14 @@ public class Generatebill {
         
     }
 
-    // To Display the Items Customer buyed.
+    // To Display the Items of Current Bill_id that the Customer bought.
 
     public void Billedproductsdisplay(int bill_id){
 
     try{
         conn = DriverManager.getConnection(url, user, pass);
+
+        // SQL Query for Displaying the Product details and Quantity that the Customer Bought on Particular Bill Id
         
         String sql2="SELECT  P.Prod_name, P.Prod_Price,I.Quantity FROM Billing AS B INNER JOIN Billingitems AS I ON B.Bill_id = I.Bill_id " +
                     "INNER JOIN Products AS P ON P.Prod_id = I.Prod_id WHERE B.Bill_id = ?";
