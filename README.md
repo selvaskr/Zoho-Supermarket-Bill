@@ -109,7 +109,7 @@ This table contains information about items in a bill.
 
 ![image](https://github.com/user-attachments/assets/53826faf-ffb0-43da-aa2d-d99f1510e882)
 
-### 1.1 If Suppose a Custommer enters the Quantity more than the Available Stock
+### 1.1 If Suppose a Customer enters the Quantity more than the Available Stock
 
 ![image](https://github.com/user-attachments/assets/8d056669-f7d3-465c-abc5-0cf0bfe90624)
 
