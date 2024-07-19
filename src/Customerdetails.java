@@ -6,7 +6,7 @@ public class Customerdetails {
 
     static String url = "jdbc:mysql://localhost:3308/supermarket";
     static String user = "root";
-    static String pass = "";
+    static String pass = "admin";
 
     // Reference Objects
     Connection conn;
@@ -15,11 +15,13 @@ public class Customerdetails {
 
     Scanner sc=new Scanner(System.in);
 
-    // Function for authorization
+    // Function for authentication
+    // Just Created temporary Admin to differentiate between admin and user for adding Products
+
     public boolean checkadmin(String admin, String password )
     {   
-        String p="ght";
-        if(admin.equals(user) && password.equals(p)){
+        // It checks with MySql admin username and password
+        if(admin.equals(user) && password.equals(pass)){
             return true;
         }
         return false;

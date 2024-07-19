@@ -2,9 +2,6 @@ import java.util.Scanner;
 
 public class App {
 
-    static String url = "jdbc:mysql://localhost:3308/supermarket";
-    static String user = "root";
-    static String pass = "";
 
     public static void main(String[] args) throws Exception {
 

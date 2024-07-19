@@ -8,7 +8,7 @@ public class Generatebill {
 
     static String url = "jdbc:mysql://localhost:3308/supermarket";
     static String user = "root";
-    static String pass = "";
+    static String pass = "admin";
 
     int bill_id=0;  
     

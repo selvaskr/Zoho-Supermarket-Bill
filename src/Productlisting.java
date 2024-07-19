@@ -7,7 +7,7 @@ public class Productlisting {
     Integer Quantity;
     static String url = "jdbc:mysql://localhost:3308/supermarket";
     static String user = "root";
-    static String pass = "";
+    static String pass = "admin";
 
     // Reference Objects
     Connection conn;
